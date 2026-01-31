@@ -60,8 +60,8 @@ all: main-build
 main-build: Projekt_zaliczeniowy.elf secondary-outputs
 
 # Tool invocations
-Projekt_zaliczeniowy.elf Projekt_zaliczeniowy.map: $(OBJS) $(USER_OBJS) C:\Users\user\STM32CubeIDE\workspace_1.19.0\Projekt_zaliczeniowy\STM32F767ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Projekt_zaliczeniowy.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\user\STM32CubeIDE\workspace_1.19.0\Projekt_zaliczeniowy\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Projekt_zaliczeniowy.map" -Wl,--gc-sections -static -L"C:\Users\user\STM32CubeIDE\workspace_1.19.0\Projekt_zaliczeniowy\Lib" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Projekt_zaliczeniowy.elf Projekt_zaliczeniowy.map: $(OBJS) $(USER_OBJS) C:\Users\user\OneDrive\ -\ put.poznan.pl\Mikro\projekt_program\Projekt_zaliczeniowy\STM32F767ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Projekt_zaliczeniowy.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\user\OneDrive - put.poznan.pl\Mikro\projekt_program\Projekt_zaliczeniowy\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Projekt_zaliczeniowy.map" -Wl,--gc-sections -static -L"C:\Users\user\OneDrive - put.poznan.pl\Mikro\projekt_program\Projekt_zaliczeniowy\Lib" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
