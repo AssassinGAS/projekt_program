@@ -1871,7 +1871,7 @@ int main(void)
 
   while (1)
   {
-      // --- 1. OBSŁUGA KOMEND UART (Ulepszony parser) ---
+      // ---OBSŁUGA KOMEND UART ---
       if (HAL_UART_Receive(&huart3, &rx_byte, 1, 0) == HAL_OK)
  80010d0:	f107 0187 	add.w	r1, r7, #135	@ 0x87
  80010d4:	2300      	movs	r3, #0
@@ -2021,7 +2021,7 @@ int main(void)
           }
       }
 
-      // --- 2. OBSŁUGA ZAKŁÓCENIA (Płynna reakcja na ADC) ---
+      // OBSŁUGA ZAKŁÓCENIA (Płynna reakcja na ADC) ---
       HAL_ADC_Start(&hadc1);
  80011fe:	4874      	ldr	r0, [pc, #464]	@ (80013d0 <main+0x394>)
  8001200:	f000 fe36 	bl	8001e70 <HAL_ADC_Start>
@@ -2071,7 +2071,7 @@ int main(void)
  800126a:	4859      	ldr	r0, [pc, #356]	@ (80013d0 <main+0x394>)
  800126c:	f000 fece 	bl	800200c <HAL_ADC_Stop>
 
-      // --- 3. PĘTLA REGULACJI PID (Wyzwalana co 150ms) ---
+      // --- PĘTLA REGULACJI PID (Wyzwalana co 150ms) ---
       if (pid_trigger == 1)
  8001270:	4b5e      	ldr	r3, [pc, #376]	@ (80013ec <main+0x3b0>)
  8001272:	781b      	ldrb	r3, [r3, #0]
@@ -2084,7 +2084,7 @@ int main(void)
  800127e:	2200      	movs	r2, #0
  8001280:	701a      	strb	r2, [r3, #0]
 
-          // A. Pomiar
+          // Pomiar
           current_lux = BH1750_ReadIlluminance_lux(&hbh1750A);
  8001282:	485b      	ldr	r0, [pc, #364]	@ (80013f0 <main+0x3b4>)
  8001284:	f7ff fc76 	bl	8000b74 <BH1750_ReadIlluminance_lux>
@@ -2092,7 +2092,7 @@ int main(void)
  800128c:	4b59      	ldr	r3, [pc, #356]	@ (80013f4 <main+0x3b8>)
  800128e:	edc3 7a00 	vstr	s15, [r3]
 
-          // B. Obliczenie PID (Metoda Pozycyjna)
+          // Obliczenie PID (Metoda Pozycyjna)
           float error = target_lux - current_lux;
  8001292:	4b59      	ldr	r3, [pc, #356]	@ (80013f8 <main+0x3bc>)
  8001294:	ed93 7a00 	vldr	s14, [r3]
@@ -2178,7 +2178,7 @@ int main(void)
  8001358:	f04f 0200 	mov.w	r2, #0
  800135c:	601a      	str	r2, [r3, #0]
 
-          // C. Wysterowanie LED 1
+          // Wysterowanie LED 1
           LED_PWM_WriteDuty(&hld1, pid_pwm_out);
  800135e:	4b28      	ldr	r3, [pc, #160]	@ (8001400 <main+0x3c4>)
  8001360:	edd3 7a00 	vldr	s15, [r3]
@@ -2186,7 +2186,7 @@ int main(void)
  8001368:	4826      	ldr	r0, [pc, #152]	@ (8001404 <main+0x3c8>)
  800136a:	f7ff fdff 	bl	8000f6c <LED_PWM_WriteDuty>
 
-          // D. Diagnostyka MATLAB (Format: Ref, Meas, PWM)
+          // Diagnostyka MATLAB (Format: Ref, Meas, PWM)
           char msg_buffer[128];
           int msg_len = sprintf(msg_buffer, "Ref:%.2f, Meas:%.2f, PWM:%.2f",
  800136e:	4b22      	ldr	r3, [pc, #136]	@ (80013f8 <main+0x3bc>)
